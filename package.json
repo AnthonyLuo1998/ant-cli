@@ -1,7 +1,7 @@
 {
   "name": "ant-cli",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "ant-cli脚手架",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
@@ -10,9 +10,21 @@
     "prepare": "husky",
     "prettier": "prettier --write ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "Vue3",
+    "Element-Plus",
+    "TypeScript"
+  ],
+  "author": "anthonyluo",
   "license": "ISC",
+  "bin": {
+    "ant-cli": "bin/index.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "README.md"
+  ],
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
