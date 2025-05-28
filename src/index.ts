@@ -10,7 +10,7 @@ program
   .description('创建一个新项目')
   .argument('[name]', '项目名称')
   .action(async (dirName) => {
-    await create()
+    await create(dirName)
   })
 
 program.parse()
