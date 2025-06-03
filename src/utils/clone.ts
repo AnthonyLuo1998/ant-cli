@@ -1,7 +1,8 @@
 import simpleGit, { SimpleGitOptions } from 'simple-git'
 import chalk from 'chalk'
 import createLogger from 'progress-estimator'
-
+import logSymbols from 'log-symbols'
+import { log } from './log'
 const gitOptions: Partial<SimpleGitOptions> = {
   baseDir: process.cwd(),
   binary: 'git',
@@ -25,11 +26,11 @@ export async function clone(
     await logger(git.clone(url, projectName, options), '模板下载中...', {
       estimate: 7000
     })
-    console.log(chalk.green('下载模板成功'))
-    console.log(chalk.blackBright('安装依赖: pnpm install'))
-    console.log(chalk.blackBright('运行项目: pnpm run dev'))
-    console.log(chalk.blackBright('打包项目: pnpm run build'))
+    log.success('下载模板成功')
+    log.info('安装依赖: pnpm install')
+    log.info('运行项目: pnpm run dev')
+    log.info('打包项目: pnpm run build')
   } catch (error) {
-    console.error(chalk.red('下载模板失败'))
+    console.error(logSymbols.error, chalk.red('下载模板失败'))
   }
 }

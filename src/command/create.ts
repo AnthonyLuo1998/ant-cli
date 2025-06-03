@@ -1,8 +1,12 @@
 import { input, select } from '@inquirer/prompts'
 import { clone } from '../utils/clone'
+import { gt } from 'lodash'
 import fs from 'fs-extra'
 import path from 'path'
 import chalk from 'chalk'
+import { getNpmLatestVersion } from '../utils/version'
+import { version, name } from '../../package.json'
+import { log } from '../utils/log'
 // github远程模版
 interface TemplateInfo {
   name: string // 模版名称
@@ -32,6 +36,7 @@ const templateMap: Map<string, TemplateInfo> = new Map([
   ]
 ])
 
+// 是否覆盖
 export function isOverwriteSelection(projectName: string) {
   return select({
     message: `是否覆盖当前路径下的${projectName}文件夹?`,
@@ -60,10 +65,21 @@ export async function create(projectName?: string) {
       }
     }
   )
-  // 项目名称
-  if (!projectName) {
-    projectName = await input({ message: '请输入项目名称:' })
+
+  // 版本检测
+  const npmLatestVersion = await getNpmLatestVersion(name)
+  if (gt(npmLatestVersion, version)) {
+    log.warn(
+      `检测到98-cli最新版本:${chalk.bgGreenBright(npmLatestVersion)},当前版本:${chalk.bgBlueBright(version)}`
+    )
+    log.info(
+      `可尝试使用命令:${chalk.green('npm install 98-cli@latest')},或使用命令${chalk.yellow('98 update')}更新`
+    )
   }
+
+  // 项目名称
+  !projectName && (projectName = await input({ message: '请输入项目名称:' }))
+
   // 当前路径是否存在相同项目
   const projectPath = path.resolve(process.cwd(), projectName)
   if (fs.existsSync(projectPath)) {
@@ -71,6 +87,7 @@ export async function create(projectName?: string) {
     if (!isOverwrite) return
     fs.removeSync(projectPath)
   }
+
   // 模版选择
   const templateName = await select({
     message: '请选择该项目模板:',
@@ -78,7 +95,7 @@ export async function create(projectName?: string) {
   })
   const info = templateMap.get(templateName)
   if (!info) {
-    console.error(chalk.red('无对应模板'))
+    log.error('无对应模板')
     return
   }
   clone(info.downloadUrl, projectName, ['-b', info.branch])
