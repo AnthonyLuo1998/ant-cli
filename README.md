@@ -1,6 +1,6 @@
-# ant-cli脚手架
+# 98-cli脚手架
 
-![Npm 版本](https://img.shields.io/badge/ant-cli_v0.0.1-green)
+![Npm 版本](https://img.shields.io/badge/98-cli_v0.0.1-green)
 
 ## 简介
 
@@ -13,19 +13,19 @@
 ## 安装
 
 ```bash
-npm install ant-cli -g
+npm install 98-cli -g
 ```
 
 ## 使用
 
 ```bash
 # 使用模板创建新项目
-ant-cli create
+98-cli create
 
 # 使用模板创建新项目并指定项目名称
-ant-cli create [my-project]
+98-cli create [my-project]
 
 # 查看脚手架版本
-ant-cli -v
-ant-cli --version
+98-cli -v
+98-cli --version
 ```

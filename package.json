@@ -1,7 +1,7 @@
 {
-  "name": "ant-cli",
+  "name": "98-cli",
   "version": "0.0.1",
-  "description": "ant-cli脚手架",
+  "description": "98-cli脚手架",
   "main": "index.js",
   "type": "commonjs",
   "scripts": {

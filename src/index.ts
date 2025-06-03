@@ -2,7 +2,7 @@ import { Command } from 'commander'
 import { version } from '../package.json'
 import { create } from './command/create'
 
-const program = new Command('ant-cli')
+const program = new Command('98-cli')
 program.version(version, '-v, --version')
 
 program
