@@ -1,6 +1,6 @@
 import simpleGit, { SimpleGitOptions } from 'simple-git'
 import chalk from 'chalk'
-const createLogger = require('progress-estimator')
+import createLogger from 'progress-estimator'
 
 const gitOptions: Partial<SimpleGitOptions> = {
   baseDir: process.cwd(),
@@ -23,7 +23,7 @@ export async function clone(
   const git = simpleGit(gitOptions)
   try {
     await logger(git.clone(url, projectName, options), '模板下载中...', {
-      estimated: 7000
+      estimate: 7000
     })
     console.log(chalk.green('下载模板成功'))
     console.log(chalk.blackBright('安装依赖: pnpm install'))

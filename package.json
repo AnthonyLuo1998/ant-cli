@@ -18,7 +18,7 @@
   "author": "anthonyluo",
   "license": "ISC",
   "bin": {
-    "ant-cli": "bin/index.js"
+    "98": "bin/index.js"
   },
   "files": [
     "bin",
@@ -57,6 +57,7 @@
     }
   },
   "dependencies": {
+    "98-cli": "link:",
     "commander": "^13.1.0"
   }
 }
