@@ -14,7 +14,8 @@ module.exports = {
         'build',
         'ci',
         'chore',
-        'revert'
+        'revert',
+        'fix'
       ]
     ], // 定义允许的提交类型
     'scope-case': [2, 'always', 'lower-case'], // 强制提交范围为小写
